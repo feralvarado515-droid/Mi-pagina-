@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>¡Feliz Cumpleaños!</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{
+      height:100%;
+      font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,#FFF8E7 0%,#FFD9E8 100%);
+      overflow-x:hidden;
+    }
+    .container{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding:24px;
+    }
+
+    header{text-align:center;margin:12px 0}
+    h1{font-size:2.5rem;color:#d24a8a;text-shadow:0 2px 0 rgba(0,0,0,0.1)}
+    p.lead{color:#444;margin-top:8px;font-size:1.1rem}
+
+    .card{
+      background:rgba(255,255,255,0.9);
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      padding:20px;
+      max-width:980px;
+      width:100%;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .photo-wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .photo{
+      flex:0 0 200px;height:200px;border-radius:12px;overflow:hidden;
+      border:6px solid rgba(255,255,255,0.9);box-shadow:0 6px 18px rgba(0,0,0,0.12)
+    }
+    .photo img{width:100%;height:100%;object-fit:cover}
+    .content{flex:1;min-width:260px}
+    .message{font-size:1.05rem;margin-bottom:12px;color:#333}
+
+    /* Pastel */
+    .cake-wrap{display:flex;align-items:center;gap:20px;margin-top:14px;flex-wrap:wrap}
+    .cake{width:260px;height:200px;position:relative}
+    .cake .plate{
+      position:absolute;left:0;right:0;bottom:0;height:18px;
+      background:linear-gradient(180deg,#f3f3f3,#e0e0e0);border-radius:10px
+    }
+    .cake .base{
+      position:absolute;left:20px;right:20px;bottom:18px;height:80px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#ffd7e4,#ff9ac4);
+      box-shadow:inset 0 -6px 12px rgba(0,0,0,0.06)
+    }
+    .cake .icing{
+      position:absolute;left:12px;right:12px;bottom:92px;height:40px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#fff6f9,#ffeafd);
+      box-shadow:inset 0 -4px 8px rgba(0,0,0,0.03)
+    }
+
+    /* NUEVO ESTILO DE VELAS */
+    .candle{
+      position:absolute;
+      bottom:132px;
+      width:12px;
+      height:48px;
+      border-radius:3px;
+      background:repeating-linear-gradient(
+        135deg,
+        var(--color1),
+        var(--color1) 6px,
+        var(--color2) 6px,
+        var(--color2) 12px
+      );
+      box-shadow:inset 0 0 4px rgba(0,0,0,0.2);
+    }
+
+    /* llamas nuevas */
+    .flame{
+      position:absolute;
+      top:-16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:16px;
+      height:20px;
+      border-radius:50% 50% 40% 40%;
+      background:radial-gradient(circle at 40% 30%,#fff8b0 0%,#ffd24a 40%,#ff8a00 80%);
+      box-shadow:0 0 12px rgba(255,150,40,0.6),0 0 20px rgba(255,100,0,0.3);
+      animation:flicker 1.2s infinite ease-in-out;
+    }
+    @keyframes flicker{
+      0%,100%{transform:translateX(-50%) scale(1);}
+      50%{transform:translateX(-50%) scale(1.2);}
+    }
+
+    /* Posiciones de las velas */
+    .candle:nth-child(4){left:50px;--color1:#ffb3d9;--color2:#fff}
+    .candle:nth-child(5){left:85px;--color1:#ffd34a;--color2:#fff}
+    .candle:nth-child(6){left:120px;--color1:#8be1ff;--color2:#fff}
+    .candle:nth-child(7){left:155px;--color1:#baffc9;--color2:#fff}
+    .candle:nth-child(8){left:190px;--color1:#ff9a9a;--color2:#fff}
+    .candle:nth-child(9){left:225px;--color1:#d6a2ff;--color2:#fff}
+
+    /* decoraciones */
+    .sparkle,.heart{
+      position:absolute;animation:floatUp 3s infinite ease-in-out;opacity:0.9;z-index:10
+    }
+    .sparkle{width:10px;height:10px;background:radial-gradient(circle,#fff 0%,#ffd6f2 80%);border-radius:50%;box-shadow:0 0 8px #ff6fc8}
+    .heart{
+      width:14px;height:14px;background:#ff7ab6;
+      transform:rotate(45deg);
+      box-shadow:-6px 0 #ff7ab6,0 -6px #ff7ab6;
+      animation:floatUp 4s infinite ease-in-out;
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(0) scale(1);opacity:1}
+      50%{transform:translateY(-25px) scale(1.1);opacity:0.8}
+      100%{transform:translateY(0) scale(1);opacity:1}
+    }
+
+    /* Globos */
+    .balloons{position:absolute;right:18px;top:-10px;display:flex;gap:12px;flex-direction:column;align-items:flex-end}
+    .balloon{width:70px;height:96px;border-radius:50%;position:relative}
+    .balloon::after{content:'';position:absolute;left:50%;bottom:-12px;width:2px;height:34px;background:#333;transform:translateX(-50%);opacity:0.15}
+    .balloon.red{background:linear-gradient(180deg,#ff7a9a,#d93d6a)}
+    .balloon.blue{background:linear-gradient(180deg,#7fd6ff,#2c99d1)}
+    .balloon.yellow{background:linear-gradient(180deg,#fff39a,#ffd34a)}
+    .balloon.green{background:linear-gradient(180deg,#baffc9,#58c07b)}
+
+    /* Confeti */
+    .confetti{position:absolute;left:14px;top:8px;display:grid;grid-template-columns:repeat(6,18px);gap:6px}
+    .confetti span{width:10px;height:14px;border-radius:2px;transform:rotate(15deg);opacity:0.95}
+
+    .actions{margin-top:18px;display:flex;gap:10px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;background:#ff7ab6;color:white;font-weight:600;box-shadow:0 6px 14px rgba(255,122,182,0.14)}
+    footer{margin-top:18px;color:#666;font-size:0.9rem;text-align:center}
+
+    @media (max-width:720px){
+      .photo{flex:0 0 130px;height:130px}
+      .cake{width:200px;height:150px}
+      h1{font-size:1.8rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>¡Feliz Cumpleaños Andreita!</h1>
+      <p class="lead">Muchas Felicidades 🎉</p>
+    </header>
+
+    <section class="card">
+      <div class="confetti">
+        <span style="background:#ff7a9a"></span>
+        <span style="background:#ffd34a"></span>
+        <span style="background:#7fd6ff"></span>
+        <span style="background:#baffc9"></span>
+        <span style="background:#d6a2ff"></span>
+        <span style="background:#ffb3d9"></span>
+      </div>
+
+      <div class="balloons">
+        <div class="balloon red"></div>
+        <div class="balloon blue"></div>
+        <div class="balloon yellow"></div>
+        <div class="balloon green"></div>
+      </div>
+
+      <div class="photo-wrap">
+        <div class="photo"><img src="Abi.jpg" alt="Foto de Abi" onerror="this.src='https://via.placeholder.com/400x400?text=Foto+Aquí'"/></div>
+        <div class="content">
+          <div class="message">
+            <strong>¡Abigailsita!</strong> 💕 Que este día esté lleno de sonrisas, amor y momentos mágicos.  
+          </div>
+          <div class="message">
+            💕Gracias por ser una persona increíble y por iluminar los días de todos con tu alegría. 🌈✨
+          </div>
+
+          <div class="cake-wrap">
+            <div class="cake" id="cake">
+              <div class="icing"></div>
+              <div class="base"></div>
+              <div class="plate"></div>
+
+              <!-- 6 velas nuevas -->
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+
+              <!-- decoraciones -->
+              <div class="sparkle" style="left:70px;bottom:150px;animation-delay:0s"></div>
+              <div class="sparkle" style="left:120px;bottom:160px;animation-delay:0.6s"></div>
+              <div class="sparkle" style="left:180px;bottom:150px;animation-delay:0.3s"></div>
+              <div class="heart" style="left:90px;bottom:130px;animation-delay:1s"></div>
+              <div class="heart" style="left:150px;bottom:140px;animation-delay:0.3s"></div>
+            </div>
+            <div>
+              <h3 style="color:#c43b76;margin-bottom:6px">Pastel de cumpleaños</h3>
+              <p style="color:#444;max-width:360px">Sopla las velas y disfruta la magia. 🎂 Las velas tienen rayas festivas y fuego brillante.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" onclick="celebrate()">Soplar Velas</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>Diseñado con cariño — ¡Feliz cumpleaños! 🎂</footer>
+    </section>
+  </div>
+
+  <script>
+    function celebrate(){
+      document.querySelectorAll('.flame').forEach(f=>{
+        f.style.transition='opacity 1s';
+        f.style.opacity=0;
+      });
+      // confeti
+      for(let i=0;i<40;i++){
+        const el=document.createElement('div');
+        el.style.position='fixed';
+        el.style.left=(10+Math.random()*80)+'%';
+        el.style.top=(10+Math.random()*60)+'%';
+        el.style.width='8px';
+        el.style.height='12px';
+        el.style.background=['#ff7a9a','#ffd34a','#7fd6ff','#baffc9','#d6a2ff'][Math.floor(Math.random()*5)];
+        el.style.opacity=0.95;
+        el.style.transform='rotate('+(Math.random()*360)+'deg)';
+        el.style.zIndex=9999;
+        el.style.borderRadius='2px';
+        document.body.appendChild(el);
+        setTimeout(()=>{el.style.transition='transform 2s linear, opacity 2s'; el.style.transform='translateY(400px) rotate(180deg)'; el.style.opacity=0},50);
+        setTimeout(()=>el.remove(),2300);
+      }
+      setTimeout(()=>alert('🎉 ¡Feliz cumpleaños, Abigailsita! Pide un deseo 💫'),1000);
+    }
+  </script>
+</body>
+</html>
+
